@@ -1,0 +1,377 @@
+$bg: #222;
+$skycol: hsl(192deg, 89%, 83%);
+$suncol1: hsl(44deg, 100%, 90%, 1);
+$suncol2: hsl(44deg, 100%, 90%, 0.25);
+$cloudcol: hsl(0deg, 0%, 95%, 0.95);
+
+$petal-col1: whitesmoke;
+$heart-col1: orange;
+$stem-col1: green;
+$leaves-col1: greenyellow;
+
+$stem-col2: green;
+$leaves-col2: green;
+
+$cloud-height: 10vmin;
+$cloud-width: 25vmin;
+
+$val1: 22.5deg;
+$val2: 45deg;
+$val3: 67.5deg;
+$val4: 90deg;
+$val5: 112.5deg;
+$val6: 135deg;
+$val7: 157.5deg;
+$val8: 180deg;
+$val9: 202.5deg;
+$val10: 225deg;
+$val11: 247.5deg;
+$val12: 270deg;
+$val13: 292.5deg;
+$val14: 315deg;
+$val15: 337.5deg;
+$val16: 360deg;
+$xpos: 35%; //sun and sunbeam position
+$ypos: 30%; //sun and sunbeam position
+
+.paint-container {
+    position: relative;
+    width: 90vmin;
+    aspect-ratio: 3/2;
+    background: $skycol;
+    overflow: hidden;
+    border: 2vmin ridge hsl(30deg, 68%, 37%);
+}
+
+.ground {
+    position: absolute;
+    bottom: -15%;
+    left: -15%;
+    width: 100%;
+    height: 50%;
+    background: hsl(83deg, 47%, 48%);
+    border-radius: 30% 70% 100% 0% / 33% 81% 19% 67%;
+
+    &::before,
+    &::after {
+        content: "";
+        width: inherit;
+        position: absolute;
+    }
+
+    &::before {
+        background: hsl(82deg, 59%, 58%);
+        bottom: -20%;
+        left: 30%;
+        height: 100%;
+        border-radius: 80% 20% 100% 0% / 100% 37% 63% 0%;
+    }
+
+    &::after {
+        background: hsl(80deg, 64%, 63%);
+        bottom: -25%;
+        left: -15%;
+        height: 100%;
+        border-radius: 29% 71% 0% 100% / 26% 100% 0% 74%;
+    }
+}
+
+.sun {
+    position: absolute;
+    top: $ypos;
+    left: $xpos;
+    height: 20vmin;
+    width: 20vmin;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+    background: radial-gradient(circle at center, hsl(44deg, 100%, 66%) 60%, transparent 65%);
+    background: hsl(44deg, 100%, 66%);
+}
+
+.sunbeam {
+    position: absolute;
+    height: 100%;
+    width: inherit;
+    background: radial-gradient(circle at $xpos $ypos, transparent 12.5%, $skycol),
+        conic-gradient(
+            at $xpos $ypos,
+            $suncol1 $val1,
+            $suncol2 $val1 $val2,
+            $suncol1 $val2 $val3,
+            $suncol2 $val3 $val4,
+            $suncol1 $val4 $val5,
+            $suncol2 $val5 $val6,
+            $suncol1 $val6 $val7,
+            $suncol2 $val7 $val8,
+            $suncol1 $val8 $val9,
+            $suncol2 $val9 $val10,
+            $suncol1 $val10 $val11,
+            $suncol2 $val11 $val12,
+            $suncol1 $val12 $val13,
+            $suncol2 $val13 $val14,
+            $suncol1 $val14 $val15,
+            $suncol2 $val15 $val16,
+            $suncol1 $val16
+        );
+}
+
+    .cloud {
+        --cloud-top: 2vmin;
+        --cloud-scale: 1;
+        --cloud-speed: 2s;
+
+        position: absolute;
+        top: var(--cloud-top);
+        left: -30vmin;
+        height: $cloud-height;
+        width: $cloud-width;
+        background: $cloudcol;
+        transform: scale(var(--cloud-scale));
+        border-radius: 50% 50% 50% 50% / 100% 100% 0% 0%;
+        filter: blur(0.25vmin);
+        animation: var(--cloud-speed) cloud-move var(--cloud-delay) linear infinite;
+
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            background: inherit;
+            border-radius: inherit;
+            bottom: 0;
+        }
+
+        &::before {
+            height: 65%;
+            width: 50%;
+            left: -17.5%;
+        }
+
+        &::after {
+            height: 45%;
+            width: 40%;
+            right: -17.5%;
+        }
+    }
+
+
+// DAISIES
+
+.flower1 {
+    --mirror: 0;
+
+    position: absolute;
+    bottom: var(--flower-bottom);
+    left: var(--flower-left);
+    height: var(--flower-length);
+    width: var(--flower-length);
+
+    .flower-head {
+        transform: rotate(var(--head-rotation));
+    }
+
+    .heart {
+        position: absolute;
+        height: var(--flower-length);
+        width: var(--flower-length);
+        background: $heart-col1;
+        border-radius: 50%;
+        transform: scale(1.5);
+    }
+
+    @for $i from 1 through 6 {
+        .petal:nth-child(#{$i}) {
+            position: absolute;
+            top: calc(-1.5 * var(--flower-length));
+            height: calc(2 * var(--flower-length));
+            width: var(--flower-length);
+            background: $petal-col1;
+            border-radius: 50% 50% 0 0;
+            transform: rotate(60deg * $i);
+            transform-origin: bottom center;
+        }
+    }
+
+    //stem
+    &::before {
+        content: "";
+        position: absolute;
+        bottom: calc((var(--flower-bottom) + var(--flower-length)) * -1);
+        height: calc(var(--flower-bottom) + var(--flower-length));
+        transform: translateX(calc(var(--flower-length) / 2));
+        border-left: 0.25vmin solid $stem-col1;
+    }
+
+    //leaves
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: var(--leave-pos);
+        left: calc(calc(0.25vmin * calc(var(--mirror) + 1)) + var(--flower-length) / 2);
+        width: calc(var(--flower-length) * 1.5);
+        height: calc(var(--flower-length) * 1.75);
+        background: $leaves-col1;
+        border-radius: 100% 0% 100% 0% / 65% 15% 85% 35%;
+        transform-origin: left;
+        transform: rotateY(calc(180deg * var(--mirror)));
+    }
+}
+
+// TULIPS
+
+.flower2 {
+    position: absolute;
+    bottom: var(--flower-bottom);
+    left: var(--flower-left);
+    height: var(--flower-length);
+    width: var(--flower-length);
+
+    .flower-head {
+        // transform: rotate(var(--head-rotation))
+        position: absolute;
+        top: var(--flower-length);
+        transform: rotate(var(--head-rotation)) scale(1.25);
+        transform-origin: bottom;
+        height: var(--flower-length);
+        width: var(--flower-length);
+        &::after {
+            content: "";
+            position: absolute;
+            top: calc(var(--flower-bottom) * 2);
+            height: var(--flower-bottom);
+            border-left: 0.5vmin solid $stem-col1;
+        }
+    }
+
+    .petal {
+        position: absolute;
+        bottom: 0;
+        border-radius: 100%;
+        height: calc(2 * var(--flower-length));
+        width: var(--flower-length);
+        transform-origin: bottom;
+    }
+
+    .petal:nth-child(5) {
+        background: hsl(var(--petal-hue), 100%, 50%);
+    }
+
+    .petal:nth-child(4) {
+        background: hsl(var(--petal-hue), 100%, 40%);
+        transform: rotate(20deg);
+    }
+
+    .petal:nth-child(3) {
+        background: hsl(var(--petal-hue), 100%, 40%);
+        transform: rotate(-20deg);
+    }
+
+    .petal:nth-child(2) {
+        background: hsl(var(--petal-hue), 100%, 30%);
+        transform: rotate(-7.5deg);
+    }
+
+    .petal:nth-child(1) {
+        background: hsl(var(--petal-hue), 100%, 30%);
+        transform: rotate(7.5deg);
+    }
+
+    .stem {
+        position: absolute;
+        height: var(--flower-bottom);
+        top: var(--flower-length);
+        width: .5vmin;
+        background: $stem-col2;
+        left:calc((var(--flower-length) / 2) - .25vmin);
+
+        &::before, &::after{
+            content: "";
+            position: absolute;
+            bottom: var(--leave-pos);
+            border-radius: 100% 0% 100% 0% / 65% 15% 85% 35%;
+        }
+
+        &::before {
+            left: .25vmin;
+            width: calc(var(--flower-length) * 1.25);
+            height: calc(var(--flower-length) * 5.5);
+            background: $leaves-col2;
+            transform-origin: left;
+            transform: rotateY(180deg);
+        }
+
+        //leaves
+        &::after {
+            width: calc(var(--flower-length) * 1.15);
+            height: calc(var(--flower-length) * 5);
+            background: $leaves-col2;
+            // transform-origin: left;
+            // transform: rotateY(calc(180deg * var(--mirror)));
+        }
+    }
+}
+
+.presentation{
+    position: relative;
+    margin-top: 1.5vmin;
+    width: 80vmin;
+    height: 7.5vmin;
+    background: #ccac00;
+    place-self: center;
+    font-family: calibri;
+    color: whitesmoke;
+    font-size: 3.5vmin;
+    text-align: center;
+    line-height: 7.5vmin;
+
+    $dim: 3.5vmin;
+
+    .rounded-corner{
+
+
+        position: absolute;
+        top: 0;
+        width: inherit;
+        height: inherit;
+        overflow: hidden;
+
+        &::after, &::before{
+            content: '';
+            position: absolute;
+            height: $dim;
+            width: $dim;
+            border-radius: 100%;
+            background: $bg;
+        }
+    }
+
+    .rounded-corner:nth-child(1){
+        &::before{
+            top: $dim * -.5;
+            left: $dim * -.5;
+        }
+        &::after{
+            bottom: $dim * -.5;
+            left: $dim * -.5;
+        }
+    }
+
+    .rounded-corner:nth-child(2){
+        &::before{
+            top: $dim * -.5;
+            right: $dim * -.5;
+        }
+        &::after{
+            bottom: $dim * -.5;
+            right: $dim * -.5;
+        }
+    }
+}
+
+@keyframes cloud-move {
+    from {
+        left: -30vmin;
+    }
+    to {
+        left: 95vmin;
+    }
+}

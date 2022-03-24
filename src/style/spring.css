@@ -1,0 +1,213 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+.spring-container {
+  position: relative;
+  width: 100vmin;
+  aspect-ratio: 3/2;
+  background: #adebfa;
+}
+.spring-container .cloud-container {
+  position: absolute;
+  bottom: 17.5vmin;
+  aspect-ratio: 2;
+  width: 30vmin;
+}
+.spring-container .cloud-container:nth-child(3) {
+  left: 5vmin;
+}
+.spring-container .cloud-container:nth-child(4) {
+  right: 5vmin;
+  transform: rotateY(180deg);
+}
+.spring-container .cloud-container .cloud {
+  position: absolute;
+  width: 30vmin;
+  aspect-ratio: 2;
+  background: whitesmoke;
+  border-radius: 50% 50% 50% 50%/100% 100% 0% 0%;
+  filter: blur(0.5vmin);
+}
+.spring-container .cloud-container .cloud::before, .spring-container .cloud-container .cloud::after {
+  content: "";
+  position: absolute;
+  background: inherit;
+  border-radius: inherit;
+  bottom: 0;
+}
+.spring-container .cloud-container .cloud::before {
+  height: 65%;
+  width: 50%;
+  left: -17.5%;
+}
+.spring-container .cloud-container .cloud::after {
+  height: 45%;
+  width: 40%;
+  right: -17.5%;
+}
+.spring-container .cloud-container .mouth {
+  position: absolute;
+  top: 60%;
+  left: 51.5%;
+  height: 2vmin;
+  width: 4vmin;
+  border: 0.5vmin solid #222;
+  border-radius: 0 0 10vmin 10vmin;
+  border-top: 0;
+}
+.spring-container .cloud-container .eyes {
+  position: absolute;
+  width: 10vmin;
+  height: 4vmin;
+  top: 35%;
+  left: 40%;
+  display: flex;
+  justify-content: space-between;
+}
+.spring-container .cloud-container .eyes::after, .spring-container .cloud-container .eyes::before {
+  content: "";
+  height: 3vmin;
+  width: 2.5vmin;
+  background: #222;
+  border-radius: 100%;
+}
+.spring-container .rainbow-container {
+  position: absolute;
+  width: 85vmin;
+  aspect-ratio: 2;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+}
+.spring-container .rainbow-container .rainbow {
+  position: absolute;
+  border-radius: 50% 50% 50% 50%/100% 100% 0% 0%;
+  width: 85vmin;
+  aspect-ratio: 2;
+  transform: rotate(0deg);
+  transform-origin: bottom;
+  filter: blur(0.05vmin);
+  opacity: 1;
+  background: radial-gradient(circle at 50% 100%, transparent 25%, #b366ff 30%, #6666ff 35%, #66b3ff 40%, #66ff66 45%, #ffff66 50%, #ffb366 55%, #ff6666 60%, transparent 65%);
+  -webkit-animation: rainbow 10s ease-in-out infinite;
+          animation: rainbow 10s ease-in-out infinite;
+}
+.spring-container .rainbow-container .rainbow::after, .spring-container .rainbow-container .rainbow::before {
+  content: "";
+  position: absolute;
+  bottom: -4.75vmin;
+  height: 20vmin;
+  width: 35vmin;
+  background: radial-gradient(circle at 50% 0%, transparent 45%, #adebfa 55%);
+}
+.spring-container .rainbow-container .rainbow::before {
+  left: -2.5vmin;
+  transform: rotate(25deg);
+}
+.spring-container .rainbow-container .rainbow::after {
+  content: "";
+  right: -2.5vmin;
+  transform: rotate(-25deg);
+}
+.spring-container .text-container {
+  position: absolute;
+  width: 85vmin;
+  aspect-ratio: 2;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+}
+.spring-container .text-container .letter {
+  position: absolute;
+  width: 5vmin;
+  height: 5vmin;
+  opacity: 0;
+  top: 10vmin;
+  left: 40vmin;
+  font-family: "Permanent Marker", cursive;
+  font-size: 7.5vmin;
+  text-shadow: 1px 1px 0 white, 1px -1px 0 white, -1px 1px 0 white, -1px -1px 0 white, 1px 0px 0 white, 0px 1px 0 white, -1px 0px 0 white, 0px -1px 0 white;
+  transform-origin: 2.5vmin 35vmin;
+  -webkit-animation: 10s letters 1s ease-in-out infinite;
+          animation: 10s letters 1s ease-in-out infinite;
+}
+.spring-container .text-container .letter:nth-child(1) {
+  transform: rotate(-47.5deg);
+}
+.spring-container .text-container .letter:nth-child(2) {
+  transform: rotate(-30deg);
+}
+.spring-container .text-container .letter:nth-child(3) {
+  transform: rotate(-12.5deg);
+}
+.spring-container .text-container .letter:nth-child(4) {
+  transform: rotate(5deg);
+}
+.spring-container .text-container .letter:nth-child(5) {
+  transform: rotate(22.5deg);
+}
+.spring-container .text-container .letter:nth-child(6) {
+  transform: rotate(40deg);
+}
+.spring-container .text-container .letter:nth-child(7) {
+  transform: rotate(57.5deg);
+}
+.spring-container .text-container .letter:nth-child(1) {
+  color: #b366ff;
+}
+.spring-container .text-container .letter:nth-child(2) {
+  color: #6666ff;
+}
+.spring-container .text-container .letter:nth-child(3) {
+  color: #66b3ff;
+}
+.spring-container .text-container .letter:nth-child(4) {
+  color: #66ff66;
+}
+.spring-container .text-container .letter:nth-child(5) {
+  color: #ffff66;
+}
+.spring-container .text-container .letter:nth-child(6) {
+  color: #ffb366;
+}
+.spring-container .text-container .letter:nth-child(7) {
+  color: #ff6666;
+}
+@-webkit-keyframes rainbow {
+  0%, 13%, 87%, 100% {
+    transform: rotate(-180deg);
+  }
+  25%, 32%, 68%, 75% {
+    transform: rotate(0deg);
+  }
+  45%, 55% {
+    transform: rotate(180deg);
+  }
+}
+@keyframes rainbow {
+  0%, 13%, 87%, 100% {
+    transform: rotate(-180deg);
+  }
+  25%, 32%, 68%, 75% {
+    transform: rotate(0deg);
+  }
+  45%, 55% {
+    transform: rotate(180deg);
+  }
+}
+@-webkit-keyframes letters {
+  0%, 24%, 61%, 100% {
+    opacity: 0;
+  }
+  25%, 60% {
+    opacity: 1;
+  }
+}
+@keyframes letters {
+  0%, 24%, 61%, 100% {
+    opacity: 0;
+  }
+  25%, 60% {
+    opacity: 1;
+  }
+}/*# sourceMappingURL=spring.css.map */
